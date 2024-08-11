@@ -1,14 +1,18 @@
+const mdw = "/Users/thomasmckenna/Downloads/Million Dollar Weekend Notes.csv"
+
+const csv = require('csv-parser')
 const fs = require('fs')
-const papa = require('papaparse')
-const readFile = readFile('sample.csv', 'utf-8')
+const results = [];
 
-//comment
+fs.createReadStream(mdw)
+    .pipe(csv())
+    .on('data', (data) => results.push(data))
+    .on('end', () => {
+    console.log(results[11]);
 
-// hello from Tom's Macbook 
+});
 
-// const fs = require("fs")
-// const https = require("http")
 
-// fs.writeFile("./src/test.txt", "utf-8", () => {
-//     console.log("file created")
-// })
+
+
+
