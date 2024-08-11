@@ -26,6 +26,7 @@ fs.createReadStream(mdw)
     })
 });
 
+// starter code for email
 // sending emails
 // Create a transporter object
 const transporter = nodemailer.createTransport({
