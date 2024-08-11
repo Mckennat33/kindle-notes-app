@@ -22,6 +22,7 @@ fs.createReadStream(mdw)
             console.log("error writing file", err)
         } else {
             console.log('file has been written')
+            
         }
     })
 });
@@ -30,21 +31,31 @@ fs.createReadStream(mdw)
 // sending emails
 // Create a transporter object
 const transporter = nodemailer.createTransport({
-    host: 'live.smtp.mailtrap.io',
+    // host: 'live.smtp.mailtrap.io', 
+    // host: 'sandbox.smtp.mailtrap.io', 
+    host: 'smtp.gmail.com', 
     port: 587,
     secure: false, // use SSL
     auth: {
-        user: '1a2b3c4d5e6f7g',
-        pass: '1a2b3c4d5e6f7g',
+        // user: '1d469bd30f4a48',
+        // pass: 'f1e6ed2c7b83ed',
+        user: 'thomasmckenna12@gmail.com ',
+        pass: 'abcj zpwy bcwo ibvu',
     }
 });
 
 // Configure the mailoptions object
 const mailOptions = {
-    from: 'yourusername@email.com',
-    to: 'yourfriend@email.com',
+    from: 'thomasmckenna12@gmail.com',
+    to: 'thomasmckenna12@gmail.com',
     subject: 'Sending Email using Node.js',
-    text: 'That was easy!'
+    text: 'This is my first email WOOOOOOOO', 
+    attachments: [
+        {
+            filename: 'hightlights.txt', 
+            path: noteFile,
+        }
+    ]
 };
 
   // Send the email
