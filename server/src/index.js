@@ -1,36 +1,59 @@
 const millionDollarWeekend = "/Users/thomasmckenna/Downloads/Million-Dollar-Weekend-Notes.csv"
 const howToBeFree = "/Users/thomasmckenna/Downloads/how-to-be-free.csv"
 const friendsLoversAndTheBigTerribleThing = "/Users/thomasmckenna/Downloads/friends-lovers-and-the-big-terrible-thing-a-memoir.csv"
-console.log(friendsLoversAndTheBigTerribleThing)
 const csv = require('csv-parser')
 const fs = require('fs')
 const nodemailer = require('nodemailer')
+const { FeedUser } = require('semantic-ui-react')
 const noteFile = "/Users/thomasmckenna/kindle-notes-app/HighlightedNotes/highlights.txt"
 
-// pull notes and read them
+
+
+// pull notes and read them - done 
 // how to notes from each book 
 // put them in one list/object/json file
 // pull 10 random notes from that file
 
-
-
-
-const results = [];
-fs.createReadStream(friendsLoversAndTheBigTerribleThing)
+const results = []
+//not sure if this needs to be a function
+function parseNotes(notes) {
+    fs.createReadStream(notes)
     .pipe(csv())
-    .on('data', (data) => results.push(data))
+    .on('data', (notes) => results.push(notes))
     .on('end', () => {
-    const textData = JSON.stringify(results[19])
-    // console.log(textData)
-    fs.writeFile(noteFile, textData, (err) => {
-        if (err) {
-            console.log("error writing file", err)
-        } else {
-            console.log('file has been written')
-            console.log(results[19])
-        }
+        const newArray = results.slice(10, 11)
+        formatNotes(newArray)
     })
-});
+    
+}
+
+parseNotes(millionDollarWeekend)
+
+
+function formatNotes(events) {
+    //console.log(events)
+    const [{ 'Your Kindle Notes For:': type, '': note }] = events;
+    console.log(type)
+}
+
+
+// const results = []
+
+// fs.createReadStream(friendsLoversAndTheBigTerribleThing)
+//     .pipe(csv())
+//     .on('data', (data) => results.push(data))
+//     .on('end', () => {
+//     const textData = JSON.stringify(results.slice(7, 9))
+//     fs.writeFile(noteFile, textData, (err) => {
+//         if (err) {
+//             console.log("error writing file", err)
+//         } else {
+//             console.log('file has been written')
+//             console.log(friendsLoversAndTheBigTerribleThing)
+//         }
+//     })
+// });
+
 
 
 // starter code for email
