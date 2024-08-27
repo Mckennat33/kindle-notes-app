@@ -7,33 +7,31 @@ const nodemailer = require('nodemailer')
 const { FeedUser } = require('semantic-ui-react')
 const noteFile = "/Users/thomasmckenna/kindle-notes-app/HighlightedNotes/highlights.txt"
 
-
-
-// pull notes and read them - done 
-// how to notes from each book 
-// put them in one list/object/json file
-// pull 10 random notes from that file
+// pull data
+// restructure the notes 
+// put into the JSON File
 
 const results = []
-//not sure if this needs to be a function
 function parseNotes(notes) {
     fs.createReadStream(notes)
     .pipe(csv())
     .on('data', (notes) => results.push(notes))
     .on('end', () => {
-        const newArray = results.slice(10, 11)
+        //const newArray = results.slice(9, 18)
+        const newArray = results
         formatNotes(newArray)
     })
-    
 }
 
 parseNotes(millionDollarWeekend)
 
-
 function formatNotes(events) {
     //console.log(events)
-    const [{ 'Your Kindle Notes For:': type, '': note }] = events;
-    console.log(type)
+    // seven
+    //const [{ 'Your Kindle Notes For:': type, '': note }] = events
+    const [, , , , , , ,notes ] = events
+    console.log(notes)
+
 }
 
 
