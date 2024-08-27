@@ -27,10 +27,10 @@ parseNotes(millionDollarWeekend)
 
 function formatNotes(events) {
     //console.log(events)
-    // seven
     //const [{ 'Your Kindle Notes For:': type, '': note }] = events
-    const [, , , , , , ,notes ] = events
-    console.log(notes)
+    // 7 objects deep to get to the first highlighted note. 
+    const [book, author, , , , , ,notes ] = events
+    console.log(book, author, notes)
 
 }
 
