@@ -27,6 +27,9 @@ function formatNotes(events) {
 
     const [{"Your Kindle Notes For:": book}] = events
     const [, {"Your Kindle Notes For:": author}] = events
+
+    // to get all the notes I will need to looop through the array and
+    // get each one after title and author
     const [,,,,,,,{"": notes}] = events
     console.log(book)
     console.log(author)
