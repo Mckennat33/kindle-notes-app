@@ -29,9 +29,15 @@ function formatNotes(events) {
     //console.log(events)
     //const [{ 'Your Kindle Notes For:': type, '': note }] = events
     // 7 objects deep to get to the first highlighted note. 
-    const [book, author, , , , , ,notes ] = events
-    console.log(book, author, notes)
-
+    // const [book, author, , , , , ,notes ] = events
+    // console.log(book, author, notes)
+    const [
+        { 'Your Kindle Notes For:': bookTitle },
+        { 'Your Kindle Notes For:': authorName },
+        , , , , , ,
+        { 'Your Kindle Notes For:': highlightType, '': highlightText }
+    ] = events;
+    console.log(bookTitle, authorName, highlightType, highlightText)
 }
 
 
