@@ -24,18 +24,19 @@ function parseNotes(notes) {
 parseNotes(millionDollarWeekend)
 
 function formatNotes(events) {
-
     const [{"Your Kindle Notes For:": book}] = events
     const [, {"Your Kindle Notes For:": author}] = events
-
     // to get all the notes I will need to looop through the array and
     // get each one after title and author
     const [,,,,,,,{"": notes}] = events
-    console.log(book)
-    console.log(author)
-    console.log(notes)
-    
+    const notesArray = events.slice(7)
 
+    for (let i = 0; i < notesArray.length; i++) {
+        //console.log(notesArray[i])
+    }
+
+    const randomNote = Math.floor(Math.random() * notesArray.length)
+    console.log(randomNote)
 }
 
 
