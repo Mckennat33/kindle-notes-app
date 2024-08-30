@@ -30,13 +30,22 @@ function formatNotes(events) {
     // get each one after title and author
     const [,,,,,,,{"": notes}] = events
     const notesArray = events.slice(7)
-
+    
     for (let i = 0; i < notesArray.length; i++) {
-        //console.log(notesArray[i])
+        //console.log(notesArray[i][''])
+        //const note = notesArray[i]['']
+        const note = notesArray[i]
+        const newArray = [note]
+        //console.log(newArray)
+        getRandomObject(newArray)
     }
 
-    const randomNote = Math.floor(Math.random() * notesArray.length)
-    console.log(randomNote)
+
+    function getRandomObject(array) {
+      const randomIndex = Math.floor(Math.random() * array.length); 
+        console.log( array[randomIndex] )
+    }
+
 }
 
 
