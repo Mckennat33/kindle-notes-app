@@ -23,31 +23,24 @@ function parseNotes(notes) {
 
 parseNotes(millionDollarWeekend)
 
+
+//
 function formatNotes(events) {
-    const [{"Your Kindle Notes For:": book}] = events
-    const [, {"Your Kindle Notes For:": author}] = events
-    // to get all the notes I will need to looop through the array and
-    // get each one after title and author
-    const [,,,,,,,{"": notes}] = events
-    const notesArray = events.slice(7)
+    const notesArray = events.slice(7); // Slice to get the notes part of the array    
+    // Fisher-Yates Shuffle Algorithm to shuffle the array
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1)); // random index
+            [array[i], array[j]] = [array[j], array[i]]; // swap elements
+        }
+        return array;
+    }
     
-    for (let i = 0; i < notesArray.length; i++) {
-        //console.log(notesArray[i][''])
-        //const note = notesArray[i]['']
-        const note = notesArray[i]
-        const newArray = [note]
-        getRandomObject(newArray)
-    }
-
-
-    function getRandomObject(array) {
-      const randomIndex = Math.floor(Math.random() * array.length); 
-        console.log( array[randomIndex] )
-        // this seems to be not working 
-        // what am i trying to do here.
-    }
-
+    const shuffledNotes = shuffleArray(notesArray);
+    const randomTenNotes = shuffledNotes.slice(0, 10); // Take the first 10 objects
+    console.log(randomTenNotes); // Output the 10 random objects
 }
+
 
 
 // const results = []
