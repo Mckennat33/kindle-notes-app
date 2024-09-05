@@ -36,7 +36,6 @@ function formatNotes(events) {
         //const note = notesArray[i]['']
         const note = notesArray[i]
         const newArray = [note]
-        //console.log(newArray)
         getRandomObject(newArray)
     }
 
@@ -44,6 +43,8 @@ function formatNotes(events) {
     function getRandomObject(array) {
       const randomIndex = Math.floor(Math.random() * array.length); 
         console.log( array[randomIndex] )
+        // this seems to be not working 
+        // what am i trying to do here.
     }
 
 }
