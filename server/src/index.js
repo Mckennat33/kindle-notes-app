@@ -9,11 +9,12 @@ const noteFile = "/Users/thomasmckenna/kindle-notes-app/HighlightedNotes/highlig
 
 // destructure data to show more notes
 
+// do I have to put the notes in one array before I use is as an argument for parseNotes.
 const results = []
-function parseNotes(notes) {
-    fs.createReadStream(notes)
+function parseNotes(bookOne, bookTwo, bookThree) {
+    fs.createReadStream(bookOne)
     .pipe(csv())
-    .on('data', (notes) => results.push(notes))
+    .on('data', (bookOne) => results.push(bookOne))
     .on('end', () => {
         //const newArray = results.slice(9, 18)
         const newArray = results
@@ -21,12 +22,19 @@ function parseNotes(notes) {
     })
 }
 
-parseNotes(millionDollarWeekend)
+parseNotes(howToBeFree, friendsLoversAndTheBigTerribleThing, millionDollarWeekend)
 
 
-//
+// fisher yates algorithm to get the 10 random objects. 
 function formatNotes(events) {
     const notesArray = events.slice(7); // Slice to get the notes part of the array    
+    const [{"Your Kindle Notes For:": book}] = events
+    const [, {"Your Kindle Notes For:": author}] = events
+    const [,,,,,,,{"": notes}] = events
+
+    // need to do something here to combine multiple books in one object then pass that through to shuffleArray. 
+    // I may need to put the above code into another function and combine multiple books in one object
+
     // Fisher-Yates Shuffle Algorithm to shuffle the array
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
