@@ -7,14 +7,17 @@ const nodemailer = require('nodemailer')
 const { FeedUser } = require('semantic-ui-react')
 const noteFile = "/Users/thomasmckenna/kindle-notes-app/HighlightedNotes/highlights.txt"
 
+
 // destructure data to show more notes
+console.log(millionDollarWeekend)
 
 // do I have to put the notes in one array before I use is as an argument for parseNotes.
 const results = []
-function parseNotes(bookOne, bookTwo, bookThree) {
-    fs.createReadStream(bookOne)
+function parseNotes(bookNotes) {
+    //only problem is with infinite arguments, how do I make it so that it passes every book through I dont want to manually add it every time.
+    fs.createReadStream(bookNotes)
     .pipe(csv())
-    .on('data', (bookOne) => results.push(bookOne))
+    .on('data', (bookNotes) => results.push(bookNotes))
     .on('end', () => {
         //const newArray = results.slice(9, 18)
         const newArray = results
@@ -22,7 +25,7 @@ function parseNotes(bookOne, bookTwo, bookThree) {
     })
 }
 
-parseNotes(howToBeFree, friendsLoversAndTheBigTerribleThing, millionDollarWeekend)
+parseNotes(millionDollarWeekend)
 
 
 // fisher yates algorithm to get the 10 random objects. 
@@ -46,7 +49,7 @@ function formatNotes(events) {
     
     const shuffledNotes = shuffleArray(notesArray);
     const randomTenNotes = shuffledNotes.slice(0, 10); // Take the first 10 objects
-    console.log(randomTenNotes); // Output the 10 random objects
+    //console.log(randomTenNotes); // Output the 10 random objects
 }
 
 
