@@ -9,9 +9,9 @@ const noteFile = "/Users/thomasmckenna/kindle-notes-app/HighlightedNotes/highlig
 
 
 // destructure data to show more notes
-console.log(millionDollarWeekend)
+// put all the notes in one array/object, and then you can have them all in their individual array/object as well
 
-// do I have to put the notes in one array before I use is as an argument for parseNotes.
+
 const results = []
 function parseNotes(bookNotes) {
     //only problem is with infinite arguments, how do I make it so that it passes every book through I dont want to manually add it every time.
@@ -19,7 +19,6 @@ function parseNotes(bookNotes) {
     .pipe(csv())
     .on('data', (bookNotes) => results.push(bookNotes))
     .on('end', () => {
-        //const newArray = results.slice(9, 18)
         const newArray = results
         formatNotes(newArray)
     })
