@@ -8,17 +8,14 @@ fs.createReadStream(millionDollarWeekend)
   .pipe(csvParser())
   .on('data', (data) => results.push(data))
   .on('end', () => {
-    newFile(results);
-
+    const jsonResults = JSON.stringify(results, null, 2);
+    fs.writeFile('test.csv', jsonResults, (err) => {
+      if (err) {
+        console.log('Error writing to file:', err)
+      } else {
+        console.log("file written successfully")
+      }
+    })
   });
 
 
-const newFile = fs.writeFile ("test.csv", results, (error) => {
-    console.log(results)
-    // results is an object it should 
-    if (error) {
-        console.log(error)
-    } else {
-        console.log(results)
-    }
-})
